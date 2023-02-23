@@ -204,9 +204,9 @@ body {
 
     &-remove {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: flex-end;
-      width: 4%;
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
