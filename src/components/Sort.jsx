@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSort } from '../redax/slices/filterSlice';
 
-function Sort({ sort, onClickSort }) {
+function Sort() {
+  const dispatch = useDispatch();
+  const sort = useSelector((state) => state.filter.sort);
   const [open, setOpen] = useState(false);
 
   const list = [
@@ -13,8 +17,8 @@ function Sort({ sort, onClickSort }) {
     { name: 'алфавиту (ASC)', sort: '-title' },
   ];
 
-  const onClickListItem = (i) => {
-    onClickSort(i);
+  const onClickListItem = (obj) => {
+    dispatch(setSort(obj))
     setOpen(false);
   };
 
