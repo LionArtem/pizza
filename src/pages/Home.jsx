@@ -40,7 +40,7 @@ const Home = () => {
   const category = categoryId > 0 ? `category=${categoryId}` : '';
   const search = searchValue ? `&search=${searchValue}` : '';
 
-  React.useEffect(() => {
+  const fetchFanction = async () => {
     setIsLoading(true);
     // fetch(
     //   `https://63c844465c0760f69ac8e732.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sort.sort.replace(
@@ -54,20 +54,37 @@ const Home = () => {
     //     setIsLoading(false);
     //   })
     //   .catch((res) => alert(res));
-    axios
-      .get(
+    // await axios
+    //   .get(
+    //     `https://63c844465c0760f69ac8e732.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sort.sort.replace(
+    //       '-',
+    //       ''
+    //     )}&order=${order}${search}`
+    //   )
+    //   .then((res) => {
+    //     setItems(res.data);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((res) => alert(res));
+
+    try {
+      const res = await axios.get(
         `https://63c844465c0760f69ac8e732.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sort.sort.replace(
           '-',
           ''
         )}&order=${order}${search}`
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      })
-      .catch((res) => alert(res));
-
+      );
+      setItems(res.data);
+    } catch (error) {
+      alert(error);
+    } finally {
+      setIsLoading(false);
+    }
     window.scrollTo(0, 0);
+  };
+
+  React.useEffect(() => {
+    fetchFanction();
   }, [categoryId, sort, searchValue, currentPage]);
 
   // React.useEffect(() => {
