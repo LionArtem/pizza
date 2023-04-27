@@ -9,10 +9,11 @@ import trash from '../assetc/img/trash.svg';
 import grey from '../assetc/img/grey-arrow-left.svg';
 import CartItem from '../components/CartItem';
 import CartEmpty from '../components/CartEmpty';
+import { selectCart } from '../redax/slices/cartSlice';
 
 function Cart() {
   const dispatch = useDispatch();
-  const { items, totalPrice } = useSelector((state) => state.cart);
+  const { items, totalPrice } = useSelector(selectCart);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 

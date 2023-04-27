@@ -1,6 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectFilter } from '../redax/slices/filterSlice';
+import { selectPizzeData } from '../redax/slices/pizzaSlice';
 
-function Categories({ value, onClickCategory }) {
+function Categories({ onClickCategory }) {
+  const { categoryId } = useSelector(selectFilter);
+  const { status } = useSelector(selectPizzeData);
+
   const categories = [
     'Все',
     'Мясные',
@@ -17,7 +23,9 @@ function Categories({ value, onClickCategory }) {
           <li
             key={i}
             onClick={() => onClickCategory(i)}
-            className={value === i ? 'active' : ''}
+            className={
+              categoryId === i ? (status === 'loading' ? '' : 'active') : ''
+            }
           >
             {values}
           </li>
