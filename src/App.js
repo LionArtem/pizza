@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import './scss/app.scss';
 
-import Header from './components/Header';
 import Home from './pages/Home';
 import NodFaund from './pages/NodFaund';
 import Cart from './pages/Cart';
