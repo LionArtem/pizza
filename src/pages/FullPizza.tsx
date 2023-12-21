@@ -3,9 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function FullPizza() {
-  const [pizza, setPizza] = React.useState();
+  const [pizza, setPizza] = React.useState<{ title: string }>();
   const { id } = useParams();
   const navigate = useNavigate();
+
   React.useEffect(() => {
     async function fechPizza() {
       try {
@@ -14,12 +15,13 @@ export default function FullPizza() {
         );
         setPizza(data);
       } catch (error) {
-        alert(error.message);
-        navigate('/')
+        //alert(error.message);
+        navigate('/');
       }
     }
     fechPizza();
   }, []);
+
   if (!pizza) {
     return 'loading...';
   }
