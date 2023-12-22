@@ -1,8 +1,6 @@
-import React from 'react';
-
 import styles from './NodeFoundBlock.module.scss'
 
-const NodFaundBlock = () => {
+const NodFaundBlock: React.FC = () => {
   return (
     <h1 className={styles.root}>
       <span>: (</span>
