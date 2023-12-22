@@ -1,9 +1,12 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectFilter } from '../redax/slices/filterSlice';
 import { selectPizzeData } from '../redax/slices/pizzaSlice';
 
-function Categories({ onClickCategory }) {
+type CategoriesProps = {
+  onClickCategory: any;
+};
+
+const Categories: React.FC<CategoriesProps> = ({ onClickCategory }) => {
   const { categoryId } = useSelector(selectFilter);
   const { status } = useSelector(selectPizzeData);
 
@@ -33,6 +36,6 @@ function Categories({ onClickCategory }) {
       </ul>
     </div>
   );
-}
+};
 
 export default Categories;

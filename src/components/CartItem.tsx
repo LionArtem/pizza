@@ -1,8 +1,19 @@
 import React from 'react';
+
 import { useDispatch } from 'react-redux';
 import { addItem, minusItem, removeItem } from '../redax/slices/cartSlice';
 
-export default function CartItem({
+type CartItemProps = {
+  id: string;
+  type: string;
+  title: string;
+  size: number;
+  price: number;
+  count: number;
+  imageUrl: string;
+};
+
+const CartItem: React.FC<CartItemProps> = ({
   id,
   type,
   title,
@@ -10,7 +21,7 @@ export default function CartItem({
   price,
   count,
   imageUrl,
-}) {
+}) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
@@ -110,4 +121,6 @@ export default function CartItem({
       </div>
     </div>
   );
-}
+};
+
+export default CartItem;
